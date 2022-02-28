@@ -5,17 +5,17 @@ const getAll = async (req, res) => {
     .then((result) => res.send(result))
     .catch(err => res.status(404).send({ massage: err }));
 }
-const getOne = (req, res) => {
+const getOne = async (req, res) => {
     await employees.findById(req.params.id)
     .then((result) => res.send(result))
     .catch(err => res.status(404).send('The employee with the given ID was not found.'));
 }
-const create = (req, res) => {
+const create =async (req, res) => {
     await employees.create(req.body)
     .then((result) => res.send(result))
     .catch(err => res.status(404).send({err}));
 }
-const update = (req, res) => {
+const update =async (req, res) => {
     const employee = employees.find(employee => employee.id === parseInt(req.params.id));
     if (!employee) {
         res.status(404).send('The employee with the given ID was not found.');
@@ -26,7 +26,7 @@ const update = (req, res) => {
     employee.department = department;
     res.send(employee);
 }
-const deleteOne = (req, res) => {
+const deleteOne =async (req, res) => {
     const employee = employees.find(employee => employee.id === parseInt(req.params.id));
     if (!employee) {
 
