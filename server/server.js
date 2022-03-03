@@ -9,20 +9,15 @@ const path = require('path');
 require("./config/passport")(passport);
 
 const app = express();
-
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.listen(process.env.PORT,
-    () => console.log(`server is running on port ${process.env.PORT}`)
-);
-
 app.use(passport.initialize());
-// app.get('/', (req, res) => res.send("server is running"));
 app.use('/auth', userRouter);
 app.use('/employees', passport.authenticate('jwt', { session: false }), employeeRouter);
 
+app.listen(process.env.PORT);
 //*****************************************************************/
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
