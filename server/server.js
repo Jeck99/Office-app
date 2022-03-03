@@ -6,7 +6,7 @@ const employeeRouter = require('./routes/employees-route');
 const userRouter = require('./routes/user-route');
 const passport = require("passport");
 const path = require('path');
-// require("./config/passport")(passport);
+require("./config/passport")(passport);
 
 const app = express();
 app.use(express.json({ extended: true }));
