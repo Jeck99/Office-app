@@ -1,4 +1,6 @@
-const BASIC_URL = 'http://localhost:4002/employees';
+const BASIC_URL =process.env.NODE_ENV ==='production'?  
+'https://office-mern-app.herokuapp.com/emplyees':
+'http://localhost:4002/employees';
 
 export const getAllEmployees = () =>{
     return fetch(BASIC_URL)
