@@ -23,8 +23,13 @@ app.use(passport.initialize());
 app.use('/auth', userRouter);
 app.use('/employees', passport.authenticate('jwt', { session: false }), employeeRouter);
 
+//*****************************************************************/
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-    app.get('*', (req, res) =>
-        res.sendFile(path.join(__dirname, '../client/build', 'index.html')));
-}
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    // Handle React routing, return all requests to React app
+    app.get('*', (req, res)=>{
+        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    });
+  }
+//*******************************************************************/
