@@ -20,6 +20,7 @@ app.use('/employees', passport.authenticate('jwt', { session: false }), employee
 app.listen(process.env.PORT);
 //*****************************************************************/
 if (process.env.NODE_ENV === 'production') {
+    console.log('Production mode');
     // Serve any static files
     app.use(express.static(path.join(__dirname, '../client/build')));
     // Handle React routing, return all requests to React app
