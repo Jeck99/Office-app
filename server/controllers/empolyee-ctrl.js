@@ -10,7 +10,7 @@ const getOne = async (req, res) => {
     .then((result) => res.send(result))
     .catch(err => res.status(404).send('The employee with the given ID was not found.'));
 }
-const create =async (req, res) => {
+const create =async (req, res) => { 
     await employees.create(req.body)
     .then((result) => res.send(result))
     .catch(err => res.status(404).send({err}));
