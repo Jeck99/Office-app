@@ -1,18 +1,11 @@
+import AppRouter from './App-Router';
 import './App.css';
-import { getAllEmployees } from './services/employee.service';
-
+import FirebaseAuthContext from './Context/firebase-auth';
 function App() {
-  const getEmployees = () => {
-    getAllEmployees()
-      .then(employees => employees && console.log("then: " + employees))
-      .catch(error => console.log("error: " + error));
-  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <button onClick={getEmployees}>Get Employees</button>
-      </header>
-    </div>
+    <FirebaseAuthContext>
+      <AppRouter/>
+    </FirebaseAuthContext>
   );
 }
 
